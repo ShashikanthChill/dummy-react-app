@@ -6,28 +6,32 @@ import Navbar from './Navbar';
 class App extends React.Component {
     STR_LIGHT = "Light";
     STR_DARK = "Dark";
-    LIGHT_CLASS = "btn btn-light"
-    DARK_CLASS = "btn btn-dark"
+    BTN_STYLE_LIGHT = "btn btn-light"
+    BTN_STYLE_DARK = "btn btn-dark"
 
     constructor(props) {
         super(props);
         this.state = {
-            current_rndr_txt: this.STR_DARK,
-            current_class: this.DARK_CLASS,
+            btn_rndr_txt: this.STR_DARK,
+            btn_rndr_style: this.BTN_STYLE_DARK,
             current_nav_theme: this.STR_LIGHT
         }
     }
 
     changeButtonText = () => {
-        if (this.state.current_rndr_txt === this.STR_DARK) {
-            this.setState({ current_rndr_txt: this.STR_LIGHT });
-            this.setState({ current_class: this.LIGHT_CLASS });
-            this.setState({ current_nav_theme: this.STR_DARK });
+        if (this.state.btn_rndr_txt === this.STR_DARK) {
+            this.setState({
+                btn_rndr_txt: this.STR_LIGHT,
+                btn_rndr_style: this.BTN_STYLE_LIGHT,
+                current_nav_theme: this.STR_DARK
+            });
         }
         else {
-            this.setState({ current_rndr_txt: this.STR_DARK });
-            this.setState({ current_class: this.DARK_CLASS });
-            this.setState({ current_nav_theme: this.STR_LIGHT });
+            this.setState({
+                btn_rndr_txt: this.STR_DARK,
+                btn_rndr_style: this.BTN_STYLE_DARK,
+                current_nav_theme: this.STR_LIGHT
+            });
         }
     }
 
@@ -38,7 +42,7 @@ class App extends React.Component {
                 <div className="container-fluid" style={{ marginTop: 50 + 'px' }}>
                     <Clock />
                     <br />
-                    <Button onClickFunc={this.changeButtonText} str={this.state.current_rndr_txt} class={this.state.current_class} />
+                    <Button onClickFunc={this.changeButtonText} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />
                 </div>
             </div>
         )
