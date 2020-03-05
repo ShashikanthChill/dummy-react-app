@@ -34,17 +34,13 @@ class App extends React.Component {
         }
     }
 
-    reverseInput = (e) => {
-        var ipt_str = e.target.straight.value;
-        if (ipt_str.length <= 1) {
-            alert("input value should be more than one character long");
+    greet = (e) => {
+        var username = e.target.username.value;
+        if (username.length === 0) {
+            alert("Name cannot be empty")
             return;
         }
-        var rev_str = ipt_str.split('').reverse().join('');
-        e.target.reverse.value = e.target.straight.value.split('').reverse().join('');
-        if (rev_str === ipt_str) {
-            alert("reverse is same as input value")
-        }
+        console.log("greet fired with val: " + username);
         e.preventDefault();
     }
 
@@ -55,16 +51,13 @@ class App extends React.Component {
                 <div className="container-fluid" style={{ marginTop: 50 + 'px', borderColor: 'black', borderStyle: 'solid', borderWidth: 1 + 'px', padding: 50 + 'px' }}>
                     <Button onClickFunc={this.changeButtonText} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />
                     <br />
-                    <form action="#" id="name-form" onSubmit={this.reverseInput}>
+                    <form action="#" id="name-form" onSubmit={this.greet}>
                         <label htmlFor="name">Your name:</label>
                         <br />
-                        <input type="text" name="straight" />
+                        <input type="text" name="username" />
                         <br />
                         <br />
-                        <input type="text" name="reverse" readOnly={true} />
-                        <br />
-                        <br />
-                        <input type="submit" value="Reverse" />
+                        <input type="submit" value="Submit" />
                     </form>
                 </div>
             </div>
