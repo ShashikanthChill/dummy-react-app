@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from './Button';
-import Clock from './Clock';
 import Navbar from './Navbar';
 
 class App extends React.Component {
@@ -35,14 +34,38 @@ class App extends React.Component {
         }
     }
 
+    reverseInput = (e) => {
+        var ipt_str = e.target.straight.value;
+        if (ipt_str.length <= 1) {
+            alert("input value should be more than one character long");
+            return;
+        }
+        var rev_str = ipt_str.split('').reverse().join('');
+        e.target.reverse.value = e.target.straight.value.split('').reverse().join('');
+        if (rev_str === ipt_str) {
+            alert("reverse is same as input value")
+        }
+        e.preventDefault();
+    }
+
     render() {
         return (
             <div>
                 <Navbar theme={this.state.current_nav_theme} />
-                <div className="container-fluid" style={{ marginTop: 50 + 'px' }}>
-                    <Clock />
-                    <br />
+                <div className="container-fluid" style={{ marginTop: 50 + 'px', borderColor: 'black', borderStyle: 'solid', borderWidth: 1 + 'px', padding: 50 + 'px' }}>
                     <Button onClickFunc={this.changeButtonText} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />
+                    <br />
+                    <form action="#" id="name-form" onSubmit={this.reverseInput}>
+                        <label htmlFor="name">Your name:</label>
+                        <br />
+                        <input type="text" name="straight" />
+                        <br />
+                        <br />
+                        <input type="text" name="reverse" readOnly={true} />
+                        <br />
+                        <br />
+                        <input type="submit" value="Reverse" />
+                    </form>
                 </div>
             </div>
         )
