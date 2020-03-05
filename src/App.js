@@ -45,7 +45,7 @@ class App extends React.Component {
         if (rev_str === ipt_str) {
             alert("reverse is same as input value")
         }
-        e.preventDefault();
+        e.preventDefault(); //prevent page reload after form submit
     }
 
     render() {
@@ -56,10 +56,12 @@ class App extends React.Component {
                     <Button onClickFunc={this.changeButtonText} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />
                     <br />
                     <form action="#" id="name-form" onSubmit={this.reverseInput}>
-                        <label htmlFor="name">Your name:</label>
+                        <label htmlFor="straight">Enter Value:</label>
                         <br />
                         <input type="text" name="straight" />
                         <br />
+                        <br />
+                        <label htmlFor="reverse">Reversed Value:</label>
                         <br />
                         <input type="text" name="reverse" readOnly={true} />
                         <br />
