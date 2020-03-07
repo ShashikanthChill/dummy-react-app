@@ -52,26 +52,23 @@ class App extends React.Component {
         return (
             <div>
                 <Navbar theme={this.state.current_nav_theme} />
-                <div className="container-fluid" style={{ marginTop: 50 + 'px', borderColor: 'black', borderStyle: 'solid', borderWidth: 1 + 'px', padding: 50 + 'px' }}>
+                <div className="shadow-lg rounded container" style={{ marginTop: 50 + 'px', padding: 50 + 'px' }}>
                     <Button onClickFunc={this.changeButtonText} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />
                     <br />
                     <form action="#" id="name-form" onSubmit={this.reverseInput}>
-                        <label htmlFor="straight">Enter Value:</label>
-                        <br />
-                        <input type="text" name="straight" />
-                        <br />
-                        <br />
-                        <label htmlFor="reverse">Reversed Value:</label>
-                        <br />
-                        <input type="text" name="reverse" readOnly={true} />
-                        <br />
-                        <br />
-                        <input type="submit" value="Reverse" />
+                        <div class="form-group">
+                            <label htmlFor="straight">Enter Value:</label>
+                            <input class="form-control" type="text" name="straight" id="straight" />
+                        </div>
+                        <div class="form-group">
+                            <label htmlFor="reverse">Reversed Value:</label>
+                            <input class="form-control" type="text" name="reverse" id="reverse" readOnly={true} />
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Reverse" />
                     </form>
                 </div>
             </div>
         )
-
     }
 }
 
