@@ -8,32 +8,37 @@ class App extends Component {
     STR_DARK = "Dark";
     BTN_STYLE_LIGHT = "btn btn-light"
     BTN_STYLE_DARK = "btn btn-dark"
+    BG_DARK = "bg-dark text-white"
+    BG_LIGHT = "bg-light text-dark"
 
     constructor(props) {
         super(props);
         this.state = {
             btn_rndr_txt: this.STR_DARK,
             btn_rndr_style: this.BTN_STYLE_DARK,
-            current_nav_theme: this.STR_LIGHT,
+            nav_rndr_style: this.STR_LIGHT,
+            bg_rndr_style: this.BG_LIGHT,
             alert_colour: "alert-warning",
             alert_display: "none",
             alert_data: "Working!"
         }
     }
 
-    changeButtonText = () => {
+    switchTheme = () => {
         if (this.state.btn_rndr_txt === this.STR_DARK) {
             this.setState({
                 btn_rndr_txt: this.STR_LIGHT,
                 btn_rndr_style: this.BTN_STYLE_LIGHT,
-                current_nav_theme: this.STR_DARK
+                nav_rndr_style: this.STR_DARK,
+                bg_rndr_style: this.BG_DARK
             });
         }
         else {
             this.setState({
                 btn_rndr_txt: this.STR_DARK,
                 btn_rndr_style: this.BTN_STYLE_DARK,
-                current_nav_theme: this.STR_LIGHT
+                nav_rndr_style: this.STR_LIGHT,
+                bg_rndr_style: this.BG_LIGHT
             });
         }
     }
@@ -84,12 +89,11 @@ class App extends Component {
     }
 
     render() {
+        let btn = <Button onClickFunc={this.switchTheme} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />;
         return (
             <div>
-                <Navbar theme={this.state.current_nav_theme} />
-                <div className="shadow-lg rounded container" style={{ marginTop: 50 + 'px', padding: 50 + 'px' }}>
-                    <Button onClickFunc={this.changeButtonText} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />
-                    <br />
+                <Navbar theme={this.state.nav_rndr_style} btn={btn} />
+                <div className={`shadow-lg rounded container ${this.state.bg_rndr_style}`} style={{ marginTop: 50 + 'px', padding: 50 + 'px' }}>
                     <form action="#" id="greet-form" onSubmit={this.greet}>
                         <div class="form-group">
                             <label htmlFor="username">Your name</label>
