@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Button from './Button';
 import Navbar from './Navbar';
 import Alert from "./Alert";
@@ -32,8 +32,7 @@ class App extends Component {
                 nav_rndr_style: this.STR_DARK,
                 bg_rndr_style: this.BG_DARK
             });
-        }
-        else {
+        } else {
             this.setState({
                 btn_rndr_txt: this.STR_DARK,
                 btn_rndr_style: this.BTN_STYLE_DARK,
@@ -44,7 +43,6 @@ class App extends Component {
     }
 
     hideAlert = () => {
-        console.log("alert hidden");
         this.setState(
             {
                 alert_display: "none"
@@ -66,8 +64,7 @@ class App extends Component {
             alert("Name cannot be empty")
             return;
         }
-        console.log("greet fired with val: " + username);
-        fetch("http://localhost:8080/greet?name=" + username)
+        fetch(`http://localhost:8080/greet?name=${username}`)
             .then(res => res.text())
             .then(
                 (result) => {
@@ -89,21 +86,24 @@ class App extends Component {
     }
 
     render() {
-        let btn = <Button onClickFunc={this.switchTheme} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />;
+        let btn = <Button onClickFunc={this.switchTheme} str={this.state.btn_rndr_txt}
+                          class={this.state.btn_rndr_style}/>;
         return (
             <div>
-                <Navbar theme={this.state.nav_rndr_style} btn={btn} />
-                <div className={`shadow-lg rounded container ${this.state.bg_rndr_style}`} style={{ marginTop: 50 + 'px', padding: 50 + 'px' }}>
+                <Navbar theme={this.state.nav_rndr_style} btn={btn}/>
+                <div className={`shadow-lg rounded container ${this.state.bg_rndr_style}`}
+                     style={{marginTop: 50 + 'px', padding: 50 + 'px'}}>
                     <form action="#" id="greet-form" onSubmit={this.greet}>
                         <div class="form-group">
                             <label htmlFor="username">Your name</label>
-                            <input class="form-control" type="text" name="username" id="username" />
+                            <input class="form-control" type="text" name="username" id="username"/>
                         </div>
-                        <input type="submit" class="btn btn-primary" value="Greet" />
+                        <input type="submit" class="btn btn-primary" value="Greet"/>
                     </form>
-                    <Alert alertColor={this.state.alert_colour} data={this.state.alert_data} hideAlertFunc={this.hideAlert} display={this.state.alert_display} />
+                    <Alert alertColor={this.state.alert_colour} data={this.state.alert_data}
+                           hideAlertFunc={this.hideAlert} display={this.state.alert_display}/>
                 </div>
-            </div >
+            </div>
         )
     }
 }
