@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Navbar extends Component {
-    
-    navLight = function (btn) {
+const Navbar = (props) => {
+
+    const navLight = function (btn) {
         return (
             <nav className="navbar navbar-light bg-light">
                 <span className="navbar-brand mb-0 h1">Dummy React App</span>
@@ -11,7 +11,7 @@ class Navbar extends Component {
         )
     }
 
-    navDark = function (btn) {
+    const navDark = function (btn) {
         return (
             <nav className="navbar navbar-dark bg-dark">
                 <span className="navbar-brand mb-0 h1">Dummy React App</span>
@@ -20,9 +20,8 @@ class Navbar extends Component {
         )
     }
 
-    render() {
-        return this.props.theme === "Light" ? this.navLight(this.props.btn) : this.navDark(this.props.btn);
-    }
+    return props.theme === "Light" ? navLight(props.btn) : navDark(props.btn);
+
 }
 
 export default Navbar;
