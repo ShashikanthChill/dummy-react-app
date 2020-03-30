@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Button from './Button';
 import Navbar from './Navbar';
 import Alert from "./Alert";
@@ -87,21 +87,21 @@ class App extends Component {
 
     render() {
         let btn = <Button onClickFunc={this.switchTheme} str={this.state.btn_rndr_txt}
-                          class={this.state.btn_rndr_style}/>;
+            class={this.state.btn_rndr_style} />;
         return (
             <div>
-                <Navbar theme={this.state.nav_rndr_style} btn={btn}/>
+                <Navbar theme={this.state.nav_rndr_style} btn={btn} />
                 <div className={`shadow-lg rounded container ${this.state.bg_rndr_style}`}
-                     style={{marginTop: 50 + 'px', padding: 50 + 'px'}}>
+                    style={{ marginTop: 50 + 'px', padding: 50 + 'px' }}>
                     <form action="#" id="greet-form" onSubmit={this.greet}>
                         <div class="form-group">
                             <label htmlFor="username">Your name</label>
-                            <input class="form-control" type="text" name="username" id="username"/>
+                            <input class="form-control" type="text" name="username" id="username" />
                         </div>
-                        <input type="submit" class="btn btn-primary" value="Greet"/>
+                        <input type="submit" class="btn btn-primary" value="Greet" />
                     </form>
                     <Alert alertColor={this.state.alert_colour} data={this.state.alert_data}
-                           hideAlertFunc={this.hideAlert} display={this.state.alert_display}/>
+                        hideAlertFunc={this.hideAlert} display={this.state.alert_display} />
                 </div>
             </div>
         )
