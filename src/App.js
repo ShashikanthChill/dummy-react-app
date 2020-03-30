@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './Button';
 import Navbar from './Navbar';
+import List from "./List";
 
 class App extends React.Component {
     STR_LIGHT = "Light";
@@ -16,7 +17,9 @@ class App extends React.Component {
             btn_rndr_txt: this.STR_DARK,
             btn_rndr_style: this.BTN_STYLE_DARK,
             nav_rndr_style: this.STR_LIGHT,
-            bg_rndr_style: this.BG_LIGHT
+            bg_rndr_style: this.BG_LIGHT,
+            status: "failed",
+            employees: null
         }
     }
 
@@ -39,19 +42,24 @@ class App extends React.Component {
         }
     }
 
-    reverseInput = (e) => {
-        var ipt_str = e.target.straight.value;
-        if (ipt_str.length <= 1) {
-            alert("input value should be more than one character long");
-            return;
-        }
-        var rev_str = ipt_str.split('').reverse().join('');
-        e.target.reverse.value = e.target.straight.value.split('').reverse().join('');
-        if (rev_str === ipt_str) {
-            alert("reverse is same as input value")
-        }
-        e.preventDefault(); //prevent page reload after form submit
+    fetchEmployees = () => {
+        fetch(`http://dummy.restapiexample.com/api/v1/employees`)
+            .then(res => res.json())
+            .then(
+                result => {
+                    this.setState(
+                        {
+                            status: result.status,
+                            employees: result.data
+                        }
+                    );
+                },
+                (error) => {
+                    console.error("oops! : " + error.toString());
+                }
+            )
     }
+
 
     render() {
         let btn = <Button onClickFunc={this.changeButtonText} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />;
@@ -59,17 +67,7 @@ class App extends React.Component {
             <div>
                 <Navbar theme={this.state.nav_rndr_style} btn={btn} />
                 <div className={`shadow-lg rounded container ${this.state.bg_rndr_style}`} style={{ marginTop: 50 + 'px', padding: 50 + 'px' }}>
-                    <form action="#" id="name-form" onSubmit={this.reverseInput}>
-                        <div className="form-group">
-                            <label htmlFor="straight">Enter Value:</label>
-                            <input className="form-control" type="text" name="straight" id="straight" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="reverse">Reversed Value:</label>
-                            <input className="form-control" type="text" name="reverse" id="reverse" readOnly={true} />
-                        </div>
-                        <input className="btn btn-primary" type="submit" value="Reverse" />
-                    </form>
+                    <List status={this.state.status} onClickFunc={this.fetchEmployees} employees={this.state.employees} />
                 </div>
             </div>
         )
