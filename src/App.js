@@ -60,6 +60,16 @@ class App extends React.Component {
             )
     }
 
+    deleteEmployee = (id) => {
+        let emps = this.state.employees;
+        let filt_emps = emps.filter(emp => {
+            return emp.id !== id;
+        })
+        this.setState({
+            employees: filt_emps,
+        })
+    }
+
 
     render() {
         let btn = <Button onClickFunc={this.changeButtonText} str={this.state.btn_rndr_txt} class={this.state.btn_rndr_style} />;
@@ -67,7 +77,7 @@ class App extends React.Component {
             <div>
                 <Navbar theme={this.state.nav_rndr_style} btn={btn} />
                 <div className={`shadow-lg rounded container ${this.state.bg_rndr_style}`} style={{ marginTop: 50 + 'px', padding: 50 + 'px' }}>
-                    <List status={this.state.status} onClickFunc={this.fetchEmployees} employees={this.state.employees} />
+                    <List status={this.state.status} onClickFunc={this.fetchEmployees} employees={this.state.employees} delFunc={this.deleteEmployee} />
                 </div>
             </div>
         )

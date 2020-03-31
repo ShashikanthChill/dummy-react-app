@@ -4,7 +4,7 @@ const List = (props) => {
 
     if (props.employees !== null) {
         const emps = props.employees.map(
-            emp => {
+            (emp) => {
                 return (
                     <div className="col-sm-4" key={emp.id}>
                         <div className="card" style={{ width: 18 + "rem" }} >
@@ -16,6 +16,9 @@ const List = (props) => {
                                 <li className="list-group-item">Age: {emp.employee_age}</li>
                                 <li className="list-group-item">Salary: {emp.employee_salary}</li>
                             </ul>
+                            <div className="card-body">
+                                <button className="btn btn-danger" onClick={() => { props.delFunc(emp.id)}}>Delete</button>
+                            </div>
                         </div>
                         <br></br>
                     </div>
